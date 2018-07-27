@@ -1,11 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive');
+const session = require('express-session');
 require('dotenv').config();
+
+const controller = require('./controller')
 
 const app = express()
 
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/build'))
+
+//Auth
+app.post('api/register', controller.register)
 
 const port = 3009
 
